@@ -4,5 +4,5 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'drink/index.html')
 
-def recommend(request):
-    return render(request, 'drink/recommend.html')
+def survey(request):
+    return render(request, 'drink/survey.html')
