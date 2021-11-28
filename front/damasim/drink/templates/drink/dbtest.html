@@ -8,7 +8,12 @@
 <b>DBTEST</b>
 {% for score in cokescore%}
     <li>
-        {{score}}
+        {{forloop.counter}} : {{score}}
+    </li>
+{% endfor %}
+{% for score in cokezeroscore%}
+    <li>
+        {{forloop.counter}} : {{score}}
     </li>
 {% endfor %}
 </body>
