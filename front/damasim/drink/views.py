@@ -10,8 +10,14 @@ def survey(request):
     return render(request, 'drink/survey.html')
 
 def dbtest(request):
-    bevs = Bev14Prep.objects.all()
-    return render(request, 'dbtest.html',{"bevs": bevs})
+    #beverages = Bev14Prep.objects.all()
+
+    #coke = beverages.filter(myunknowncolumn=0)
+
+    cokescore = Bev14Prep.objects.values("coca_cola_classic_coke")
+
+    return render(request, 'drink/dbtest.html', {'cokescore': cokescore})
+
     """
     try:
         cursor = connection.cursor()
