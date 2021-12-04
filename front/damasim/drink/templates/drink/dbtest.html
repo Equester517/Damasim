@@ -6,11 +6,15 @@
 </head>
 <body>
 <b>DBTEST</b>
-{% for index in random_index %}
-    <h2>
-        {{forloop.counter}} 번째 음료수: {{index}}
-    </h2>
+
+{% for index, drink in List %}
+<script>
+document.write("<h2>")
+document.write("{{index}}:{{drink}}")
+document.write("</h2>")
+</script>
 {% endfor %}
+
     <form method="post">
         {% csrf_token %}
         <input type="text" name="score">
