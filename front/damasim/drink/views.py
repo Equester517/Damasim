@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Bev14Prep
 from django.db import connection
 import random
+import json
 
 # Create your views here.
 def index(request):
@@ -39,6 +40,16 @@ def dbtest(request):
 def post(request):
 
     if request.method =='POST':
-        print("====>>>>> POST DATA:", request.POST)
-        print("====>>>>> POST DATA:", request.POST.getlist('answers[]'))
+
+        #from .recsys import Recsys #.recsys 파일에서 Recsys 함수 import
+        #JSON 형태의 값 N개를 받아서, recsys.py에서 실행
+
+        #input = json.loads(request.body)["bev"]["score"]
+
+        #result = Recsys.USERMETHOD(input)
+        #context = {
+        # 'result' : result
+        #}
+        #return render(request, result.html,context)
+
         return render(request, 'drink/dbtest.html', '')

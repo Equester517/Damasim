@@ -13,18 +13,7 @@
 {% endfor %}
     <form method="post">
         {% csrf_token %}
-        <div>
-            <input type="checkbox" name="answers[]" id="answer1" value="11">
-                <label for="answer1"><p>체크박스 테스트</p></label>
-            </input>
-        </div>
-
-        <div>
-            <input type="checkbox" name="answers[]" id="answer2" value="12">
-                <label for="answer2"><p>체크박스 테스트</p></label>
-            </input>
-        </div>
-
+        <input type="text" name="score">
         <button type="submit" name="submitbutton">제출!</button>
     </form>
 </body>
