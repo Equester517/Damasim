@@ -6,15 +6,26 @@
 </head>
 <body>
 <b>DBTEST</b>
-{% for score in cokescore%}
-    <li>
-        {{forloop.counter}} : {{score}}
-    </li>
+{% for index in random_index %}
+    <h2>
+        {{forloop.counter}} 번째 음료수: {{index}}
+    </h2>
 {% endfor %}
-{% for score in cokezeroscore%}
-    <li>
-        {{forloop.counter}} : {{score}}
-    </li>
-{% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <input type="checkbox" name="answers[]" id="answer1" value="11">
+                <label for="answer1"><p>체크박스 테스트</p></label>
+            </input>
+        </div>
+
+        <div>
+            <input type="checkbox" name="answers[]" id="answer2" value="12">
+                <label for="answer2"><p>체크박스 테스트</p></label>
+            </input>
+        </div>
+
+        <button type="submit" name="submitbutton">제출!</button>
+    </form>
 </body>
 </html>
