@@ -3,6 +3,7 @@ from .models import Bev14Prep
 from django.db import connection
 import random
 import json
+from .recsys import Recsys
 
 # Create your views here.
 def index(request):
@@ -33,6 +34,19 @@ def survey(request):
     # 그 인덱스대로 점수 저장할 예정
 
     return render(request, 'drink/survey.html', {'drink_List':drink_List})
+
+def recommend(request):
+
+    RECOMMEND_NO = 15 # 추천할 아이템의 갯수
+
+    if request.method == 'POST':
+
+        bevQueryDict = request.POST
+        bevDict = bevQueryDict.dict()
+
+        result = Recsys(bevDict, RECOMMEND_NO)
+
+        return render(request, 'drink/recommend.html', {'result': result})
 
 
 def dbtest(request):
@@ -65,22 +79,3 @@ def dbtest(request):
     return render(request, 'drink/dbtest.html', {'List':drink_List})
     # return render(request, 'drink/dbtest.html')
 
-def recommend(request):
-    if request.method =='POST':
-
-        #from .recsys import Recsys #.recsys 파일에서 Recsys 함수 import
-        #JSON 형태의 값 N개를 받아서, recsys.py에서 실행
-
-        #input = json.loads(request.body)["bev"]["score"]
-
-        #result = Recsys.USERMETHOD(input)
-        #context = {
-        # 'result' : result
-        #}
-        #return render(request, result.html,context)
-
-        # print("아아아아아아아아")
-        print("====>>>>> POST DATA:", request.POST)
-        
-        # print("====>>>>> POST DATA:", request.POST.getlist('answers[]'))
-        return render(request, 'drink/recommend.html')
