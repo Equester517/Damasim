@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Bev14Prep
 from django.db import connection
 import random
+import json
 
 # Create your views here.
 def index(request):
@@ -67,8 +68,8 @@ def dbtest(request):
 def recommend(request):
     if request.method =='POST':
         # print("아아아아아아아아")
-        print("====>>>>> POST DATA:", request.POST)
-        
+        data=request.POST
+        print("====>>>>> POST DATA:", data)
         # print("====>>>>> POST DATA:", request.POST.getlist('answers[]'))
-        return render(request, 'drink/recommend.html')
+        return render(request, 'drink/recommend.html',data)
 
