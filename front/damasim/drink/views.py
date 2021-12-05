@@ -3,6 +3,7 @@ from .models import Bev14Prep
 from django.db import connection
 import random
 import json
+from .recsys import Recsys
 
 # Create your views here.
 def index(request):
@@ -34,6 +35,19 @@ def survey(request):
 
     return render(request, 'drink/survey.html', {'drink_List':drink_List})
 
+def recommend(request):
+
+    RECOMMEND_NO = 15 # 추천할 아이템의 갯수
+
+    if request.method == 'POST':
+
+        bevQueryDict = request.POST
+        bevDict = bevQueryDict.dict()
+
+        result = Recsys(bevDict, RECOMMEND_NO)
+
+        return render(request, 'drink/recommend.html', {'result': result})
+
 
 def dbtest(request):
 
@@ -64,12 +78,4 @@ def dbtest(request):
     # return render(request, 'drink/dbtest.html', {'index':random_index, 'drink_List': columnname_list_shuffled})
     return render(request, 'drink/dbtest.html', {'List':drink_List})
     # return render(request, 'drink/dbtest.html')
-
-def recommend(request):
-    if request.method =='POST':
-        # print("아아아아아아아아")
-        data=request.POST
-        print("====>>>>> POST DATA:", data)
-        # print("====>>>>> POST DATA:", request.POST.getlist('answers[]'))
-        return render(request, 'drink/recommend.html',data)
 
