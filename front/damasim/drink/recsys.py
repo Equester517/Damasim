@@ -9,7 +9,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 def Recsys(dict, recommend_no):
 
     curs = connection.cursor()
-    sqlstr = "SELECT * FROM bev14_prep;"
+    sqlstr = "SELECT * FROM db;"
     curs.execute(sqlstr)
     result = curs.fetchall()
 
@@ -73,8 +73,7 @@ def predict_rating_topsim(ratings_arr, item_sim_arr, n=20):
     for col in range(ratings_arr.shape[1]):
         top_n_items = [np.argsort(item_sim_arr[:, col])[:-n-1:-1]]
         for row in range(ratings_arr.shape[0]):
-            pred[row, col] = item_sim_arr[col,:][top_n_items].dot(
-            ratings_arr[row, :][top_n_items].T)
+            pred[row, col] = item_sim_arr[col,:][top_n_items].dot(np.float_(ratings_arr[row, :][top_n_items].T))
             pred[row, col] /= np.sum(item_sim_arr[col,:][top_n_items])
     return pred
 

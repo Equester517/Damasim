@@ -63,10 +63,8 @@
                     <div class="description">
                         Please rate at least 10 items
                     </div>
-                    <!-- <button type="button" class="btn btn-primary" name="save" id="save" onclick="location.href='survey'"> -->
                     <script>
                         function send() {
-                            alert("send");
                             data=document.getElementsByClassName('ratefill')
                             var index=[];
                             var score=[];
@@ -83,9 +81,7 @@
                                     num=num+1;
                                 }
                             }
-                            console.log(index);
-                            console.log(score);
-                            console.log(num);
+
                             // create new form
                             var form = document.createElement('form');
                             form.setAttribute('method', 'post');
@@ -100,24 +96,30 @@
                                 eval("form.appendChild(s"+i+")");
                             }
                             document.body.appendChild(form);
-                            console.log(form)
-                            form.submit();
+                            form.submit();     
+                            
+                            // 10개 미만 선택지 (현재 사용x)
+                            // if(num>=10) {
+                            //     // create new form
+                            //     var form = document.createElement('form');
+                            //     form.setAttribute('method', 'post');
+                            //     form.setAttribute('action', "{% url 'recommend' %}");
+
+                            //     // create element (input)
+                            //     for(i=0; i<num; i++) {
+                            //         eval("var s"+i+"= document.createElement('input')");
+                            //         eval("s"+i+".setAttribute('type', 'hidden')");
+                            //         eval("s"+i+".setAttribute('name', index[i])");
+                            //         eval("s"+i+".setAttribute('value', score[i])");
+                            //         eval("form.appendChild(s"+i+")");
+                            //     }
+                            //     document.body.appendChild(form);
+                            //     form.submit();
+                            // }
+                            // else {
+                            //     alert("doesn't rate at least 10 items!");
+                            // }
                         }
-                        // document.querySelector('#save').addEventListener('click', function(e){
-                        // //폼 서밋
-                        // //실제로는 서버에 폼을 전송하고 완료 메시지가 표시되지만 저장된 것으로 간주하고 폼을 초기화 함.
-                        // score=document.getElementsByClassName('ratefill')
-                        // for(i=0; i<20; i++) {
-                        //     console.log(score[i].id+":"+score[i].clientWidth/60)
-                        // }
-                        // var form = document.createElement('form');
-                        // form.setAttribute('method', 'post');
-                        // form.setAttribute('action', "./recommend");
-                        // // {% csrf_token %}
-                        // document.body.appendChild(form);
-                        // console.log(form)
-                        // form.submit();
-                    // });
                     </script>
                     <form id="contents" name="contents" method="post" action="{% url 'recommend' %}">
                         {% csrf_token %}
