@@ -46,6 +46,18 @@ Rating.prototype.setRate = function(rateobj, newrate){
 
 let rating = new Rating();//별점 인스턴스 생성
 
-var drinkList=['코카콜라(Coca-Cola Classic Coke)','코카콜라 제로(Coca-Cola Zero Sugar)','펩시콜라(Pepsi)','펩시 제로슈거 라임(Pepsi Zero Sugar Lime)','스프라이트(Sprite)'
-				,'마운틴 듀(Mountain Dew)','환타(Fanta Orange)','칠성 사이다(Chilsung Cider)',"웰치스 포도(Welch's Grape Soda)",'밀키스(Milkis)']
-var imageList=['Coke.jpg','CokeZero.jpg','Pepsi.jpg','PepsiZero.jpg','Sprite.jpg','MountainDew.jpg','Fanta.jpg','Chilsung.jpg','Welchs.jpg','Milkis.jpg']
+
+var imageList=[] //이미지리스트
+for(i=1;i<70;i++) {
+	if(i<10)
+		imageList.push('bev_00'+i+'.jpg')
+	else if(i>=10)
+		imageList.push('bev_0'+i+'.jpg')
+}
+
+var score=[]
+
+var input=[]
+for(i=0;i<20;i++) {
+	input.push("input"+(i+1));
+}
